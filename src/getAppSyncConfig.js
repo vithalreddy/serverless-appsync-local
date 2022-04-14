@@ -279,6 +279,11 @@ export default function getAppSyncConfig(context, appSyncConfig) {
         Issuer: authType.openIdConnectConfig.issuer,
         ClientId: authType.openIdConnectConfig.clientId,
       };
+    } else if (auth.authenticationType === AuthTypes.AWS_LAMBDA) {
+      auth.lambdaAuthorizerConfig = {
+        lambdaFunction: 'authorizer',
+        ttlSeconds: 600,
+      };
     }
 
     return auth;
